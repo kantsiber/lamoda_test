@@ -3,8 +3,8 @@ import json
 from retriever import search_hybrid
 
 client = OpenAI(
-    api_key="ollama",
-    base_url="http://localhost:11434/v1"
+    api_key="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",
+    base_url="https://api.groq.com/openai/v1"
 )
 
 
@@ -30,14 +30,17 @@ tools = [
 
 def run_agent(user_question):
     messages = [
-        {"role": "system", "content": "Ты помощник по академии селлеров Lamoda. Для ответа на вопросы используй инструмент search_knowledge_base. В конце ответа указывай источники."},
+        {"role": "system", "content":
+        "Ты помощник по академии селлеров Lamoda. Твоя задача дать максимально релевантный"
+        "ответ для пользователя. Для ответа на вопросы используй инструмент"
+        "search_knowledge_base. В конце ответа указывай источники."},
         {"role": "user", "content": user_question}
     ]
 
 
     while True:
         response = client.chat.completions.create(
-            model="llama3.1",
+            model="llama-3.1-8b-instant",
             messages=messages,
             tools=tools
         )
@@ -71,3 +74,5 @@ def run_agent(user_question):
             break
 
 run_agent("Как зарегистрироваться в Lamoda Seller?")
+run_agent("Как добавить товар в акцию?")
+run_agent("Что такое FBO и как начать работу?")
