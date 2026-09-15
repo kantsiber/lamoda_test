@@ -3,8 +3,8 @@ import json
 from retriever import search_hybrid
 
 client = OpenAI(
-    api_key="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",
-    base_url="https://api.groq.com/openai/v1"
+    api_key="",
+    base_url=""
 )
 
 
